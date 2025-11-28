@@ -1,0 +1,184 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Nova Reserva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="reservaForm" Validate>
+    <!-- Dados do cliente -->
+     <ion-card>
+      <ion-card-header>
+        <ion-card-title>Dados dos Cliente</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="full">
+          <!-- campo nome -->
+          <ion-item>
+            <ion-label position="stacked">
+              Nome completo <ion-text color="danger">*</ion-text> 
+            </ion-label> 
+            <ion-input
+              type="text"
+              minlength="2"
+              placeholder="Digite seu nome"
+              formControlName="nome"
+            ></ion-input>
+          </ion-item>
+          <!-- Campo telefone -->
+           <ion-item>
+            <ion-label position="stacked">
+              Telefone / WhatsApp <ion-text color="danger">*</ion-text> 
+            </ion-label>
+            <ion-input
+              type="tel"
+              formControlName="telefone"
+              inputmode="tel"
+              placeholder="11999999999"
+              maxlength="11"
+              minlength="10"
+            >
+            </ion-input> 
+           </ion-item>
+           <!-- campo email -->
+            <ion-item>
+              <ion-label position="stacked">
+                Email <ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-input
+                type="email"
+                inputmode="email"
+                placeholder="email@exemplo.com"
+                formControlName="email"
+              >
+              </ion-input>
+            </ion-item>
+        </ion-list>
+      </ion-card-content>
+     </ion-card>
+     <!-- Detalhes da Reserva -->
+     <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          Detalhes da Reserva
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" size-md="6">
+              <ion-item>
+                <ion-label position="stacked">
+                  Data da Reserva <ion-text color="danger">*</ion-text> 
+                </ion-label>
+                <ion-datetime
+                  formControlName="data"
+                  presentation="date"
+                  placeholder="Selecione a data"
+                >
+                </ion-datetime>
+              </ion-item>
+            </ion-col>
+            <ion-col size="12" size-md="6">
+              <ion-item>
+                <ion-label position="stacked">
+                  Horário da Reserva <ion-text color="danger">*</ion-text> 
+                </ion-label>
+                <ion-datetime 
+                  formControlName="hora"
+                  presentation="time"
+                  placeholder="Selecione o horário">
+                </ion-datetime> 
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="12" size-md="6">
+              <ion-item>
+                <ion-label position="stacked">
+                  Número de Pessoas <ion-text color="danger">*</ion-text> 
+                </ion-label>
+                <ion-input 
+                  type="number"
+                  formControlName="pessoas"
+                  min="1"
+                  placeholder="Informe o total de pessoas">
+                </ion-input> 
+              </ion-item>
+            </ion-col>
+            
+            <ion-col size="12" size-md="6">
+              <ion-item>
+                <ion-label position="stacked">Preferencia de mesa</ion-label>
+                <ion-select formControlName="preferencia" interface="popover" placeholder="Selecione uma opção">
+                  <ion-select-option value="Janela">Próximo à janela</ion-select-option>
+                  <ion-select-option value="externa">Área externa</ion-select-option>
+                  <ion-select-option value="interna">Área interna</ion-select-option>
+                  <ion-select-option value="sempreferencia">Sem preferência</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="12" size-md="6">
+              <ion-item>
+                <ion-label position="stacked">Ocasião Especial</ion-label>
+                <ion-select formControlName="ocasiao" interface="popover" placeholder="Selecione uma opção">
+                  <ion-select-option value="aniversario">Aniversário</ion-select-option>
+                  <ion-select-option value="casal">Jantar romântico</ion-select-option>
+                  <ion-select-option value="familia">Reunião de família</ion-select-option>
+                  <ion-select-option value="negocio">Reunião de Nogócios</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label position="stacked"> 
+                  Observações
+                </ion-label> 
+                <ion-textarea 
+                  formControlName="observacoes"
+                  rows="4"
+                  placeholder="Ex.: restrição alimentar, cadeira para criança, decoração especial..."
+                >
+                </ion-textarea>
+              </ion-item>
+            </ion-col> 
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+     </ion-card>
+     <!-- botões -->
+      <ion-footer class="ion-padding-top">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" size-md="6">
+              <ion-button 
+              expand="block" 
+              fill="outline" 
+              type="button"
+              (click)="reservaForm.reset({pessoas: 2})"
+              color="secondary"
+              >
+                Limpar
+              </ion-button>
+            </ion-col> 
+            <ion-col size="12" size-md="6">
+              <ion-button 
+                expand="block"
+                color="primary"
+                type="submit"
+              >
+                Confirmar Reserva
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-footer>
+
+  </form>
+</ion-content>
